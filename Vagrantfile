@@ -12,7 +12,19 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "base"
+
+  config.vm.box = "debian/bookworm64"
+
+    config.vm.define "venus" do |venus| 
+      venus.vm.hostname = "venus.deaw.test"
+      venus.vm.network "private_network", ip:"192.168.57.102"
+    end
+
+
+    config.vm.define "tierra" do |tierra| 
+      tierra.vm.hostname = "tierra.deaw.test"
+      tierra.vm.network "private_network", ip:"192.168.57.103"
+    end
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -32,7 +44,7 @@ Vagrant.configure("2") do |config|
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  # config.vm.network "private_network", ip: "192.168.33.10"
+    config.vm.network "private_network", ip: "192.168.57.0"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
