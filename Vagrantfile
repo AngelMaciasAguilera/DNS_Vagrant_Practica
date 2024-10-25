@@ -25,6 +25,7 @@ Vagrant.configure("2") do |config|
 
       venus.vm.provision "shell", name: "Provisioning" inline: <<-SHELL
         cp -v /vagrant/named /etc/default/named
+        cp -v /vagrant/named.conf.options /etc/bind/named.conf.options
       SHELL
 
     end
