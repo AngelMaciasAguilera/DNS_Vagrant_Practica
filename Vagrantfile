@@ -26,6 +26,8 @@ Vagrant.configure("2") do |config|
       venus.vm.provision "shell", name: "Provisioning", inline: <<-SHELL
         cp -v /vagrant/venus_files/named /etc/default/named
         cp -v /vagrant/venus_files/named.conf.options /etc/bind/named.conf.options
+        cp -v /vagrant/venus_files/named.conf.local /etc/bind/named.conf.local
+        sudo systemctl restart bind9
       SHELL
 
     end
