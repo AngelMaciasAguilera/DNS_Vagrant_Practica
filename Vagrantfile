@@ -18,9 +18,13 @@ Vagrant.configure("2") do |config|
     config.vm.define "venus" do |venus| 
       venus.vm.hostname = "venus.deaw.test"
       venus.vm.network "private_network", ip:"192.168.57.102"
-      venus.vm.provision "shell", inline: <<-SHELL
+      venus.vm.provision "shell", name: "Update_machine" inline: <<-SHELL
         apt-get update
         sudo apt-get install bind9 bind9utils bind9-doc
+      SHELL
+
+      venus.vm.provision "shell", name: "Provisioning" inline: <<-SHELL
+        cp -v /vagrant/named /etc/default/named
       SHELL
 
     end
