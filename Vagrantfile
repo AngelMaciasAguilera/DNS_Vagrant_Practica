@@ -24,8 +24,8 @@ Vagrant.configure("2") do |config|
       SHELL
 
       venus.vm.provision "shell", name: "Provisioning" inline: <<-SHELL
-        cp -v /vagrant/named /etc/default/named
-        cp -v /vagrant/named.conf.options /etc/bind/named.conf.options
+        cp -v /vagrant/venus_files/named /etc/default/named
+        cp -v /vagrant/venus_files/named.conf.options /etc/bind/named.conf.options
       SHELL
 
     end
@@ -34,6 +34,15 @@ Vagrant.configure("2") do |config|
     config.vm.define "tierra" do |tierra| 
       tierra.vm.hostname = "tierra.deaw.test"
       tierra.vm.network "private_network", ip:"192.168.57.103"
+      tierra.vm.provision "shell", name: "Update_machine" inline: <<-SHELL
+        apt-get update
+        sudo apt-get install bind9 bind9utils bind9-doc
+      SHELL
+
+      tierra.vm.provision "shell", name: "Provisioning" inline: <<-SHELL
+        cp -v /vagrant/earth_files/named /etc/default/named
+        cp -v /vagrant/earth_files/named.conf.options /etc/bind/named.conf.options
+      SHELL
     end
 
   # Disable automatic box update checking. If you disable this, then
