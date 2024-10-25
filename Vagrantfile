@@ -44,6 +44,10 @@ Vagrant.configure("2") do |config|
       tierra.vm.provision "shell", name: "Provisioning", inline: <<-SHELL
         sudo cp -v /vagrant/earth_files/named /etc/default/named
         sudo cp -v /vagrant/earth_files/named.conf.options /etc/bind/named.conf.options
+        sudo cp -v /vagrant/earth_files/named.conf.local /etc/bind/named.conf.local
+        sudo cp -v /vagrant/earth_files/tierra.sistema.test.dns /var/lib/bind/tierra.sistema.test.dns
+        sudo cp -v /vagrant/earth_files/tierra.sistema.test.rev /var/lib/bind/tierra.sistema.test.rev
+        sudo systemctl restart bind9
       SHELL
     end
 
