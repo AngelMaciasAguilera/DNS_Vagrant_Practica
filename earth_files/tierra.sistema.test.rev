@@ -1,0 +1,14 @@
+$TTL    86400
+@       IN      SOA     tierra.sistema.test. admin.sistema.test. (
+                              2         ; Serial
+                          86400         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                          86400 )       ; Negative Cache TTL
+
+@       IN      NS      tierra.sistema.test.
+
+101     IN      PTR     mercurio.sistema.test.
+102     IN      PTR     venus.sistema.test.
+103     IN      PTR     tierra.sistema.test.
+104     IN      PTR     marte.sistema.test.
