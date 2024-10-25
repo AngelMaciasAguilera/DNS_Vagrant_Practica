@@ -18,12 +18,12 @@ Vagrant.configure("2") do |config|
     config.vm.define "venus" do |venus| 
       venus.vm.hostname = "venus.deaw.test"
       venus.vm.network "private_network", ip:"192.168.57.102"
-      venus.vm.provision "shell", name: "Update_machine" inline: <<-SHELL
+      venus.vm.provision "shell", name: "Update_machine", inline: <<-SHELL
         apt-get update
         sudo apt-get install bind9 bind9utils bind9-doc
       SHELL
 
-      venus.vm.provision "shell", name: "Provisioning" inline: <<-SHELL
+      venus.vm.provision "shell", name: "Provisioning", inline: <<-SHELL
         cp -v /vagrant/venus_files/named /etc/default/named
         cp -v /vagrant/venus_files/named.conf.options /etc/bind/named.conf.options
       SHELL
@@ -34,14 +34,14 @@ Vagrant.configure("2") do |config|
     config.vm.define "tierra" do |tierra| 
       tierra.vm.hostname = "tierra.deaw.test"
       tierra.vm.network "private_network", ip:"192.168.57.103"
-      tierra.vm.provision "shell", name: "Update_machine" inline: <<-SHELL
+      tierra.vm.provision "shell", name: "Update_machine", inline: <<-SHELL
         apt-get update
         sudo apt-get install bind9 bind9utils bind9-doc
       SHELL
 
-      tierra.vm.provision "shell", name: "Provisioning" inline: <<-SHELL
-        cp -v /vagrant/earth_files/named /etc/default/named
-        cp -v /vagrant/earth_files/named.conf.options /etc/bind/named.conf.options
+      tierra.vm.provision "shell", name: "Provisioning", inline: <<-SHELL
+        sudo cp -v /vagrant/earth_files/named /etc/default/named
+        sudo cp -v /vagrant/earth_files/named.conf.options /etc/bind/named.conf.options
       SHELL
     end
 
